@@ -32,14 +32,14 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
-const User = mongoose.model('user', userSchema);
+const Useri = mongoose.model('useri', userSchema);
 
 server.post('/', async (req, res) => {
   try {
-    let user = new User();
-    user.username = req.body.username;
-    user.password = req.body.password;
-    await user.save();
+    let useri = new Useri();
+    useri.username = req.body.username;
+    useri.password = req.body.password;
+    await useri.save();
     console.log('User created successfully!');
     res.send('User created successfully!');
   } catch (err) {
