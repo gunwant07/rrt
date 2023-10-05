@@ -32,6 +32,12 @@ server.post('/demo', async (req, res) => {
   await user.save();
   res.send('User created successfully!');
 });
+server.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+server.get('/debug', (req, res) => {
+  res.send('Debugging information goes here.');
+});
 // Add these lines to allow cross-origin requests
 server.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
