@@ -29,8 +29,8 @@ server.post('/demo', async (req, res) => {
   let user = new User();
   user.username = req.body.username;
   user.password = req.body.password;
-    const doc = await user.save();
-  console.log(doc);
+  await user.save();
+  res.send('User created successfully!');
 });
 // Add these lines to allow cross-origin requests
 server.use((req, res, next) => {
