@@ -14,8 +14,17 @@ async function main() {
   await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+  }, (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    console.log('connected');
+    // Start listening only after connection is established
+    server.listen(port, () => {
+      console.log('server started');
+    });
   });
-  console.log('connected');
 }
 
 const userSchema = new mongoose.Schema({
@@ -49,6 +58,6 @@ server.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-server.listen(port, () => {
-  console.log('server started');
-});
+
+// Export the server variable instead of the handler function
+module.exports = server;
