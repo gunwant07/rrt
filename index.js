@@ -31,8 +31,7 @@ server.post('/demo', async (req, res) => {
   user.password = req.body.password;
 });
 // Add these lines to allow cross-origin requests
-server.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
