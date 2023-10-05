@@ -35,11 +35,17 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('user', userSchema);
 
 server.post('/', async (req, res) => {
-  let user = new User();
-  user.username = req.body.username;
-  user.password = req.body.password;
-  await user.save();
-  res.send('User created successfully!');
+  try {
+    let user = new User();
+    user.username = req.body.username;
+    user.password = req.body.password;
+    await user.save();
+    console.log('User created successfully!');
+    res.send('User created successfully!');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Something went wrong!');
+  }
 });
 server.get('/debug', (req, res) => {
   res.send('Debugging information goes here.');
