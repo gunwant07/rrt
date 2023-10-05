@@ -25,15 +25,12 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('user', userSchema);
 
-server.post('/demo', async (req, res) => {
+server.post('/', async (req, res) => {
   let user = new User();
   user.username = req.body.username;
   user.password = req.body.password;
   await user.save();
   res.send('User created successfully!');
-});
-server.get('/', (req, res) => {
-  res.send('Hello World!');
 });
 server.get('/debug', (req, res) => {
   res.send('Debugging information goes here.');
